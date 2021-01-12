@@ -3,32 +3,27 @@ import axios from "axios";
 import "./Weather.css";
 import WeatherInfo from "./WeatherInfo";
 
-
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
-   
     setWeatherData({
       ready: true,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
-      date: new Date(response.data.dt*1000),
+      date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
       icon: response.data.weather[0].icon,
       wind: response.data.wind.speed,
       city: response.data.name,
-    })
-  
-   
+    });
   }
 
   function search() {
     const apiKey = "1e983fc1289e5b13249048fafebff087";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(handleResponse);
-
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
   }
 
   function handleSubmit(event) {
@@ -37,8 +32,7 @@ export default function Weather(props) {
   }
   function handleCityChange(event) {
     setCity(event.target.value);
-}
-
+  }
 
   if (weatherData.ready) {
     return (
@@ -51,28 +45,23 @@ export default function Weather(props) {
                 placeholder="Type a city..."
                 className="form-control"
                 autoFocus="on"
-onChange={handleCityChange}
+                onChange={handleCityChange}
               />
             </div>
-    <div className="col-3">
-    <input
-      type="submit"
-      value="Search"
-      className="btn btn-primary w-100"
-    />
-  </div>
-</div>
+            <div className="col-3">
+              <input
+                type="submit"
+                value="Search"
+                className="btn btn-primary w-100"
+              />
+            </div>
+          </div>
         </form>
-        <WeatherInfo data={ weatherData } />
-        
-</div>
-);
+        <WeatherInfo data={weatherData} />
+      </div>
+    );
   } else {
     search();
     return "Loading...";
-}
-
   }
-
-
-  
+}
