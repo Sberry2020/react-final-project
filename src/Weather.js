@@ -36,7 +36,8 @@ export default function Weather(props) {
 
   if (weatherData.ready) {
     return (
-      <div className="Weather">
+      <div className={(typeof weatherData.ready != "undefined") ? ((weatherData.temperature > 16) ? 'Warm' : 'Weather' ) : 'Weather'} >
+        <main>
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-9">
@@ -44,7 +45,6 @@ export default function Weather(props) {
                 type="search"
                 placeholder="Type a city..."
                 className="form-control"
-                autoFocus="on"
                 onChange={handleCityChange}
               />
             </div>
@@ -56,8 +56,13 @@ export default function Weather(props) {
               />
             </div>
           </div>
-        </form>
-        <WeatherInfo data={weatherData} />
+          </form>
+          {(typeof weatherData.ready!="undefined") ? (
+          <div>
+            <WeatherInfo data={weatherData} />
+            </div>
+            ) : (" ")}
+          </main>
       </div>
     );
   } else {
