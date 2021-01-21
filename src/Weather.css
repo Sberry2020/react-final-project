@@ -81,7 +81,7 @@ text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
 }
 .Weather .celsius {
   color: white;
-  font-size: 40px;
+  font-size: 25px;
   font-weight: 400;
   position: relative;
   line-height: 1;
@@ -91,7 +91,7 @@ text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
 }
 .Warm .celsius {
   color: white;
-  font-size: 40px;
+  font-size: 25px;
   font-weight: 400;
   position: relative;
   line-height: 1;
